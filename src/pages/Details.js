@@ -3,6 +3,7 @@ import { LinearProgress, makeStyles, Typography } from '@material-ui/core';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import ReactHtmlParser from 'react-html-parser';
+import './summary.css';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -66,47 +67,41 @@ const Details = () => {
         <div className={classes.container}>
 
             <span style={{ display: "flex" }} className={classes.premiered1} >
-            <Typography variant="h5" className={classes.heading}>
-              Premiered:
-            </Typography>
-            &nbsp; &nbsp;
-            <Typography
-              variant="h5" className={classes.premiered2}
-              style={{
-                fontFamily: "Montserrat",
-              }}
-            >
-              {shows?.premiered}
-            </Typography>
-          </span>
+            
 
              <Typography variant='subtitle1' className={classes.description}>
        {ReactHtmlParser(shows?.summary)}.
-
        </Typography>
-             <Typography variant='subtitle1' className={classes.prevepisode}>
-            shows: {shows?.previousepisode}     
-       </Typography>
-            </div>
+            
+          </span>
+           
 
 
-       <div className="container">
+       <div className="container1">
+       <Typography variant="h5" className={classes.heading}>
+              Show Info:
+            </Typography>
        
-          <div className="card_item" key={shows.id}>
-            <div className="card_inner">
-              <div className="userName">{shows?.name}</div>
-              <div className="userDetails">
-                <div>Language: {shows?.language}</div>
-                <div>Genres: {shows.genres.join(', ')}</div>
-                <div>
-                  Rating: {shows.rating.average ? shows.rating.average : 'N/A'}
-                </div>
-                <div>Premiered: {shows.premiered}</div>
+          <div className="card_item1" key={shows.id}>
+            <div className="card_inner1">
+              <div className="userName1">Network: {shows?.network?.name}</div>
+              <div className="userDetails1">
+                <div>Schedule:  {shows?.schedule?.days} at {shows?.schedule?.time} </div>
+                <div>Status: {shows?.status}</div>
+                <div> Country: {shows?.network?.country?.name } </div>
+                <div>Episodes ordered: {shows.premiered} </div>
+                <div>Ended: {shows?.ended} </div>
+                <div>Runtime: {shows.runtime}m</div>
+                <div>Official site: {shows?.officialSite} </div>
+                {/* <div>Externals: {shows?.externals} </div> */}
+                
               </div>
             </div>
-          </div>
-        
+          </div> 
       </div>
+
+       </div>
+      
   </>
 
 

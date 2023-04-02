@@ -98,7 +98,7 @@ return (
     <div className={classes.container}>
       <div className={classes.sidebar}>
         <img src={shows?.image?.original} alt="" height="200" />
-        <Typography variant="h4">{shows?.name}</Typography>
+         <Typography variant="h4">{shows?.name}</Typography> 
 
         <div className={classes.language}>
         <span style={{ display: "flex" }}>
@@ -144,62 +144,3 @@ export default Cardsummary;
 
 
 
-
-// return (
-//   <div>
-//     {shows?.map((show) => (
-//       <div className={classes.container} key={show.id}  >
-//         <div className={classes.sidebar}  >
-//           <img
-//             src={show?.image?.original}
-//             alt=""
-//             height="200"
-//             style={{
-//               marginBottom:20
-//             }}
-//           />
-//           <Typography variant='h3' className={classes.heading}>
-//             {show.name}
-//           </Typography>
-//           <Typography variant='subtitle1' className={classes.description}>
-//             Language: {show.language}
-//           </Typography>
-//           <div  className={classes.marketData}>
-//             <span style={{ display: "flex" }}>
-//               <Typography variant='h5' className={classes.heading}> 
-//                 Genres: 
-//               </Typography>
-//               &nbsp; &nbsp;
-//               <Typography variant='h5' 
-//                 style={{
-//                   fontFamily:"Montserrat",
-//                 }}>  
-               
-//                  {show.genres ? show.genres.join(', ') : ''}
-
-//               </Typography>
-//             </span>
-            
-//             <span style={{ display: "flex" }}>
-//               <Typography variant="h5" className={classes.heading}>
-//                 Premiered:
-//               </Typography>
-//               &nbsp; &nbsp;
-//               <Typography
-//                 variant="h5"
-//                 style={{
-//                   fontFamily: "Montserrat",
-//                 }}
-//               >
-//                 {show.premiered}
-//               </Typography>
-//             </span>
-//           </div>
-//         </div>
-//       </div>
-//     ))}
-//   </div>
-// );
-//             }
-
-// export default Cardsummary;
