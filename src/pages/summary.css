@@ -32,6 +32,31 @@
 	flex-wrap: wrap;
 }
 
+
+
+.details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.detail-item {
+  
+  margin-right: 10px;
+}
+
+.detail-values {
+  display: flex;
+}
+
+.detail-values span {
+  margin-right: 10px;
+}
+
+
+
 .card_item1 {
 	padding: 15px 15px;
 	width: 30%;

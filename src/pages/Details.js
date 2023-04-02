@@ -92,9 +92,17 @@ const Details = () => {
                 <div>Episodes ordered: {shows.premiered} </div>
                 <div>Ended: {shows?.ended} </div>
                 <div>Runtime: {shows.runtime}m</div>
-                <div>Official site: {shows?.officialSite} </div>
-                {/* <div>Externals: {shows?.externals} </div> */}
-                
+                <div className="details">
+  <div className="detail-item">Rating:</div>
+  <div className="detail-item detail-values">
+    <span>TVRage: {shows?.externals?.tvrage}</span>
+    <span>TheTVDB: {shows?.externals?.thetvdb}</span>
+    <span>IMDB: {shows?.externals?.imdb}</span>
+  </div>
+</div>
+                       
+                        <div >Official site: {shows?.officialSite}</div>
+
               </div>
             </div>
           </div> 
