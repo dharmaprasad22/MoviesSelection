@@ -10,11 +10,11 @@ import './Header.css';
 const usestyle = makeStyles(() => ({
     title:{
         flex: 1,
-        color: "#70abb3",
+        color: "hsl(245, 44%, 65%)",
         fontFamily: "Montserrat",
-        fontweight: "bold",
-        cursor: "pointer"
-
+        fontWeight: "bold",
+        cursor: "pointer",
+        
     }
 })
 )
