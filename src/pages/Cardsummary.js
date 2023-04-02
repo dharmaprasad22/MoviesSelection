@@ -3,6 +3,7 @@ import { LinearProgress, makeStyles, Typography } from '@material-ui/core';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
+import Details from './Details';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -13,19 +14,20 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   sidebar: {
-    width: "30%",
+    width: "50%",
     [theme.breakpoints.down("md")]: {
       width: "100%",
     },
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    padding: 25,
     marginTop: 25,
     borderRight: "2px solid grey",
   },
   heading:{
     fontWeight:'bold',
-    marginBottom:20,
+    marginBottom:5,
     fontFamily:"Montserrat",
   },
   description:{
@@ -38,8 +40,8 @@ const useStyles = makeStyles((theme) => ({
   },
   marketData: {
     alignSelf: "start",
-    padding: 25,
-    paddingTop: 10,
+    padding: 2,
+    paddingTop: 0,
     width: "100%",
     [theme.breakpoints.down("md")]: {
       display: "flex",
@@ -53,6 +55,23 @@ const useStyles = makeStyles((theme) => ({
       alignItems: "start",
     },
   },
+  language: {
+    alignSelf: "start",
+    padding: 2,
+    paddingTop: 5,
+    width: "100%",
+    [theme.breakpoints.down("md")]: {
+      display: "flex",
+      justifyContent: "space-around",
+    },
+    [theme.breakpoints.down("sm")]: {
+      flexDirection: "column",
+      alignItems: "center",
+    },
+    [theme.breakpoints.down("xs")]: {
+      alignItems: "start",
+    },
+},
 }));
 
 const Cardsummary = () => {
@@ -62,8 +81,10 @@ const Cardsummary = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await axios('https://api.tvmaze.com/shows/${id}');
-      setShows([result.data]);
+      const result = await axios(`https://api.tvmaze.com/shows/${id}`);
+      
+      
+      setShows(result.data);
     };
 
     fetchData();
@@ -74,60 +95,111 @@ const Cardsummary = () => {
 
 if(!shows) return <LinearProgress style={{backgroundColor:"gold"}}/>
 return (
-  <div>
-    {shows.map((show) => (
-      <div className={classes.container}  >
-        <div className={classes.sidebar} key={show.id} >
-          <img
-            src={show?.image?.original}
-            alt=""
-            height="200"
-            style={{
-              marginBottom:20
-            }}
-          />
-          <Typography variant='h3' className={classes.heading}>
-            {show.name}
-          </Typography>
-          <Typography variant='subtitle1' className={classes.description}>
-            Language: {show.language}
-          </Typography>
-          <div  className={classes.marketData}>
-            <span style={{ display: "flex" }}>
-              <Typography variant='h5' className={classes.heading}> 
-                Genres: 
-              </Typography>
-              &nbsp; &nbsp;
-              <Typography variant='h5' 
-                style={{
-                  fontFamily:"Montserrat",
-                }}>  
-               
-                 {show.genres ? show.genres.join(', ') : ''}
+    <div className={classes.container}>
+      <div className={classes.sidebar}>
+        <img src={shows?.image?.original} alt="" height="200" />
+        <Typography variant="h4">{shows?.name}</Typography>
 
-              </Typography>
-            </span>
-            
-            <span style={{ display: "flex" }}>
-              <Typography variant="h5" className={classes.heading}>
-                Premiered:
-              </Typography>
-              &nbsp; &nbsp;
-              <Typography
-                variant="h5"
-                style={{
-                  fontFamily: "Montserrat",
-                }}
-              >
-                {show.premiered}
-              </Typography>
-            </span>
-          </div>
+        <div className={classes.language}>
+        <span style={{ display: "flex" }}>
+        <Typography variant="h5" className={classes.heading}>
+          Language: 
+        </Typography>
+        &nbsp; &nbsp;
+            <Typography variant="h5" style={{ fontFamily: "Montserrat" }}>
+            {shows?.language}
+            </Typography>
+          </span>
+       
+        </div>
+
+        <div className={classes.marketData}>
+          <span style={{ display: "flex" }}>
+            <Typography variant="h5" className={classes.heading}>
+              Genres:
+            </Typography>
+            &nbsp; &nbsp;
+            <Typography variant="h5" style={{ fontFamily: "Montserrat" }}>
+              {shows.genres ? shows.genres.join(", ") : ""}
+            </Typography>
+          </span>
+
+          
         </div>
       </div>
-    ))}
-  </div>
-);
-            }
+    
+
+   
+    <Details  shows={shows}/>
+    </div>
+  );
+};
 
 export default Cardsummary;
+
+
+
+
+
+
+
+
+
+// return (
+//   <div>
+//     {shows?.map((show) => (
+//       <div className={classes.container} key={show.id}  >
+//         <div className={classes.sidebar}  >
+//           <img
+//             src={show?.image?.original}
+//             alt=""
+//             height="200"
+//             style={{
+//               marginBottom:20
+//             }}
+//           />
+//           <Typography variant='h3' className={classes.heading}>
+//             {show.name}
+//           </Typography>
+//           <Typography variant='subtitle1' className={classes.description}>
+//             Language: {show.language}
+//           </Typography>
+//           <div  className={classes.marketData}>
+//             <span style={{ display: "flex" }}>
+//               <Typography variant='h5' className={classes.heading}> 
+//                 Genres: 
+//               </Typography>
+//               &nbsp; &nbsp;
+//               <Typography variant='h5' 
+//                 style={{
+//                   fontFamily:"Montserrat",
+//                 }}>  
+               
+//                  {show.genres ? show.genres.join(', ') : ''}
+
+//               </Typography>
+//             </span>
+            
+//             <span style={{ display: "flex" }}>
+//               <Typography variant="h5" className={classes.heading}>
+//                 Premiered:
+//               </Typography>
+//               &nbsp; &nbsp;
+//               <Typography
+//                 variant="h5"
+//                 style={{
+//                   fontFamily: "Montserrat",
+//                 }}
+//               >
+//                 {show.premiered}
+//               </Typography>
+//             </span>
+//           </div>
+//         </div>
+//       </div>
+//     ))}
+//   </div>
+// );
+//             }
+
+// export default Cardsummary;

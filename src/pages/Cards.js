@@ -1,12 +1,13 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Pagination } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 import './App.css';
 
 const Cards = () => {
   const [shows, setShows] = useState([]);
   const [page, setPage] = useState(1);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchShows = async () => {
@@ -17,6 +18,7 @@ const Cards = () => {
     };
     fetchShows();
   }, [page]);
+  console.log(shows);
 
   const handlePageChange = (pageNum) => {
     setPage(pageNum);
@@ -38,9 +40,11 @@ const Cards = () => {
                 </div>
                 <div>Premiered: {show.premiered}</div>
               </div>
-              <Link to={`/Cardsummary/${show.id}`}>
+              {/* <Link to={`/Cardsummary/${show.id}`}>
+              </Link> */}
+              <div onClick={() => navigate(`/Cardsummary/${show.id}`)}  >  
                 <button className="seeMore">Details</button>
-              </Link>
+                </div>
             </div>
           </div>
         ))}

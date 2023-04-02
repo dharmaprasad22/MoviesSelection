@@ -17,7 +17,7 @@ function App() {
       
       <Routes>
         <Route path="/"  element={<Cards/>} />
-        <Route path="/Card/:id"  element={<Cardsummary/>} />
+        <Route path="/Cardsummary/:id"  element={<Cardsummary/>} />
       </Routes>
     </div>
   </BrowserRouter>
