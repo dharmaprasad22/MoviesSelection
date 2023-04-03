@@ -63,6 +63,7 @@ const Details = () => {
 
   if (!shows) return <LinearProgress style={{ backgroundColor: "gold" }} />
   return (
+    
   <>
         <div className={classes.container}>
 

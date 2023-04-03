@@ -36,7 +36,7 @@ const Header = () => {
             <Toolbar>
                 <Typography onClick={() => navigate("/")} className={classes.title}
                 variant='h4'>
-                    Movie List
+                    Some Exotic shows
                 </Typography>
 
                
